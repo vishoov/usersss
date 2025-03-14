@@ -1,0 +1,49 @@
+User Management API
+
+user centric routes
+
+-> signup
+-> login routes
+-> forgot password
+-> profile
+-> list all users
+
+
+
+RESTful API
+-> Stateless - efficient and fast -> 
+    something that does not have a fixed state
+        -> signup -> user information
+        ALL THE INFORMATION that is required to fulfill or respond to a request
+        should be provided by the user in the request 
+
+
+
+        user-> signup, country code server saved -> other country
+
+-> error handled -> try{}catch(err){}
+
+-> data validation -> to prevent submission of wrong information by the user 
+                        and to avoid data overlapping 
+    (mongoose)
+
+-> mongoDB database 
+
+-> asynchronous in nature 
+
+
+
+we need to set up a schema for user information ->
+
+Data modelling
+
+-> it makes our service efficient -> confusion email, phone, age, address, pin code, role
+-> it avoids invalid data 
+-> data becomes useful 
+-> it helps in security -> signup -> email and password 
+
+
+Error Handling
+
+-> used to prevent crashing of the server when an error occurs
+-> lets the client know what is wrong with their input
