@@ -8,6 +8,8 @@ const mongoose  = require('mongoose');
 const userSchema = new mongoose.Schema({
     //here we define the structure of the user collection
     name:{
+      
+        //karan kumar -> name -> string
         type:String,
         //required-> this field is required or not
         required:[true, `Name is required`],
@@ -21,17 +23,40 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:[true, `Email is required`],
         unique:[true, 'Email already exists'],
+        //trim-> this will remove the extra spaces from the beginning and the end of the string
+        // "    hello "-> "hello"
+
         trim:true,
         //lowercase: true-> this will convert the email to lowercase
         lowercase:true,
+        //validate-> this will validate the email
+      
+            //value-> this is the email that is coming from the user
+            //regex-> regular expression
+            //regex is used to validate the email
+            //regex is a pattern matching tool
+            //username@serviceprovider.com/.in/.org/.co.in
 
+        validate:{
+            validator: function(value){
+                return /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(value);
+            },
+            message: function(props){
+                return `${props.value} is not a valid email`;
+            }
+            //Hello123_cool@custom_server.ai/.com/.in/.org
+        },
     },
+    
     age:{
         type:Number,
         required:[true, `Age is required`],
-        min:[18, 'Age should be greater than 18'],
+        //min-> this will define the minimum value of the age
+        min:[18, 'You are too young'],
+        //max-> this will define the maximum value of the age
         max:[100, 'Age should be less than 100']       
     },
+
     password:{
         type:String,
         required:[true, `Password is required`],
@@ -64,7 +89,7 @@ const userSchema = new mongoose.Schema({
 
 
 //model-> this will create the collection in the database
-mongoose.model('User', userSchema);
+const user = mongoose.model('User', userSchema);
 
 //export the model
-module.exports = mongoose.model('User');
+module.exports = user;

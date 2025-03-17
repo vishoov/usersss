@@ -31,19 +31,62 @@ RESTful API
 
 -> asynchronous in nature 
 
-
+MongoDB database is schemaless 
 
 we need to set up a schema for user information ->
 
 Data modelling
 
--> it makes our service efficient -> confusion email, phone, age, address, pin code, role
+-> it makes our service efficient ->these details should be validated or cross checked
+ email, phone, age, address, pin code, role
 -> it avoids invalid data 
--> data becomes useful 
--> it helps in security -> signup -> email and password 
+-> data becomes useful -> we can generate predictive insights from the data  
+-> it helps in security -> signup -> email and password -> forgot password 
+
+Role Based Authentication
+
+ecommerce app -> admin, user 
+functionalities -> only admin 
+
+/login -> email, password-> email -> if admin -> then provide the features 
+otherwise no features
 
 
 Error Handling
 
 -> used to prevent crashing of the server when an error occurs
 -> lets the client know what is wrong with their input
+
+
+captcha -> package -> div -> validate X -> validate true 
+
+
+
+Aggregation and pipelines
+
+one purpose per route 
+
+Aggregation and pipelines
+
+
+deeper and more complex insights into my data i will use aggregation and pipelines
+
+Aggregation pipelines -> when we have to implement more than one logic to the data
+in order to extract something that DEPENDS on the data but is NOT exactly in the same format
+as the data 
+
+//i want to count adults in my database
+
+app.get("/count", async (req, res)=>{
+    try{
+        const count = await User.findandelete
+    }
+})
+
+//count young people in a city using my website
+
+//males and females 
+
+//active users
+
+//product popularity
