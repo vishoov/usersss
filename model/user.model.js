@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
         //karan kumar -> name -> string
         type:String,
         //required-> this field is required or not
-        required:[true, `Name is required`],
+        // required:[true, `Name is required`],
         //unique-> this field should be unique or not 
         unique:false,
         //trim-> this will remove the extra spaces from the beginning and the end of the string
@@ -21,14 +21,13 @@ const userSchema = new mongoose.Schema({
     },
     email:{
         type:String,
-        required:[true, `Email is required`],
-        unique:[true, 'Email already exists'],
+        required:[false, `Email is required`],
         //trim-> this will remove the extra spaces from the beginning and the end of the string
         // "    hello "-> "hello"
 
-        trim:true,
+        // trim:true,
         //lowercase: true-> this will convert the email to lowercase
-        lowercase:true,
+        // lowercase:true,
         //validate-> this will validate the email
       
             //value-> this is the email that is coming from the user
@@ -50,7 +49,7 @@ const userSchema = new mongoose.Schema({
     
     age:{
         type:Number,
-        required:[true, `Age is required`],
+        required:[false, `Age is required`],
         //min-> this will define the minimum value of the age
         min:[18, 'You are too young'],
         //max-> this will define the maximum value of the age
@@ -59,7 +58,7 @@ const userSchema = new mongoose.Schema({
 
     password:{
         type:String,
-        required:[true, `Password is required`],
+        required:[false, `Password is required`],
         trim:true,
         //minlength-> this will define the minimum length of the password
         minLength:[6, 'Password should be greater than 6'],
@@ -68,13 +67,13 @@ const userSchema = new mongoose.Schema({
     },
     phone:{
         type:Number,
-        required:[true, `Phone is required`],
+        required:[false, `Phone is required`],
         min:1000000000,
         max:9999999999
     },
     role:{
         type:String,
-        required:true,
+        // required:true,
         //enum-> this will define the values that are allowed for this
         enum:['admin', 'user'],
         default:'user'
@@ -84,6 +83,15 @@ const userSchema = new mongoose.Schema({
         required:false,
         trim:true
 
+    },
+    country:{
+        type:String,
+        required:false,
+        trim:true
+    },
+    isActive:{
+        type:Boolean,
+        default:true
     }
 });
 

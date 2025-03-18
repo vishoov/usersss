@@ -69,14 +69,20 @@ one purpose per route
 Aggregation and pipelines
 
 
+
 deeper and more complex insights into my data i will use aggregation and pipelines
 
 Aggregation pipelines -> when we have to implement more than one logic to the data
 in order to extract something that DEPENDS on the data but is NOT exactly in the same format
 as the data 
 
-//i want to count adults in my database
 
+
+//for getting some information -> 
+
+
+//i want to count adults in my database
+//role: user, age: group -> count 
 app.get("/count", async (req, res)=>{
     try{
         const count = await User.findandelete
@@ -90,3 +96,94 @@ app.get("/count", async (req, res)=>{
 //active users
 
 //product popularity
+
+
+
+complete aggregation pipelines
+
+task manager api
+
+
+
+
+name, age, email, role, city, country, password, phone, isActive -> user.login <30days 
+
+10000 -> international users 
+-> sales team -> countries 
+
+-> users in my service are from different countries 
+
+- find active users -> isActive:true,done
+- group the users based on countries and write their count ->{ country, count } 
+- sort based on count in descending order 
+- country, userCount 
+
+app.get("/country", async (req, res)=>{
+    try{
+        const countbycountry = await User.aggregate(
+            //array
+            [
+                //of objects
+                {
+                    $match:{
+                        isActive:true,
+                        role:'user',
+                        age:{$gt:18}
+                    }
+                },
+                {
+                    //create groups of data 
+                    $group:{
+                        _id: "$country",
+                        userCount:{$sum:1}
+
+                    }
+                },
+                {
+                    $sort:{
+                        userCount:-1,
+                    }
+                },
+                {
+                    $project:{
+                        country:"$_id",
+                        userCount:1,
+                        _id:0 
+                    }
+                }
+            ]
+        )
+
+    }
+    catch(err){
+
+    }
+})
+
+
+
+[
+{
+    country: india,
+    userCount : number
+
+},
+{
+    country:australia,
+    userCount:number
+}
+]
+
+
+
+Task Management Features for our usermanagement API
+
+create task model -> title, description, status, assignedUser, timestamp, id 
+
+
+
+Routes-> create a task, update the task, delete task, fetch tasks 
+
+user-task relationship 
+
+implement the functionality of updating the task 
